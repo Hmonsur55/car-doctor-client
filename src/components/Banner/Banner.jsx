@@ -9,7 +9,22 @@ const Banner = () => {
   return (
     <div className="carousel w-full">
       <div id="slide1" className="carousel-item relative w-full">
-        <img src={img1} className="w-full" />
+        <img src={img1} className="w-full rounded-xl" />
+        <div className=" rounded-xl h-full absolute flex items-center top-0 bottom-0  gap-6 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0)] ">
+          <div className="text-white w-1/2 pl-24">
+            <h1 className="text-6xl font-bold">
+              Affordable Price For Car Servicing
+            </h1>
+            <p className="my-4">
+              There are many variations of passages of available, but the
+              majority have suffered alteration in some form
+            </p>
+            <div>
+              <button className="btn btn-primary mr-5">Button</button>
+              <button className="btn btn-outline btn-secondary">Button</button>
+            </div>
+          </div>
+        </div>
         <div className="absolute flex justify-end transform -translate-y-1/2 left-5 right-5 bottom-0 gap-6">
           <a href="#slide4" className="btn btn-circle">
             ❮
