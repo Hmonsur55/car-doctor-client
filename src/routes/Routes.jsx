@@ -16,16 +16,18 @@ const router = createBrowserRouter([
       },
       {
         path: "/login",
-        element: <Login></Login>
+        element: <Login></Login>,
       },
       {
-        path: '/register',
-       element: <Register></Register> 
+        path: "/register",
+        element: <Register></Register>,
       },
       {
-        path: '/checkout/:id',
-       element: <Checkout></Checkout>, 
-      }
+        path: "/checkout/:id",
+        element: <Checkout></Checkout>,
+        loader: ({params}) =>
+          fetch(`http://localhost:5000/checkout/${params.id}`),
+      },
     ],
   },
 ]);

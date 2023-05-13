@@ -11,7 +11,7 @@ const ServiceCard = ({ service }) => {
         <h2 className="card-title">{title}</h2>
         <p> Price : {price}</p>
         <div className="card-actions mt-auto">
-          <Link to={`/checkout/:${_id}`}>
+          <Link to={`/checkout/${_id}`}>
             <button className="btn btn-primary">Book Now</button>
           </Link>
         </div>
