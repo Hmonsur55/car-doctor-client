@@ -2,13 +2,15 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useContext } from "react";
 import { authContext } from "../../components/AuthProvider/AuthProvider";
+import BookingsRow from "./BookingsRow";
 
 
 const Bookings = () => {
     const { user } = useContext(authContext);
     const [bookings, setBookings] = useState([]);
-
-    const url = `http://localhost:5000/bookings?email=${user?.email}`;
+console.log(user)
+  const url = `http://localhost:5000/bookings?email=${user?.email}`;
+  console.group(url)
     useEffect(() => {
          fetch(url)
            .then((res) => res.json())
@@ -16,13 +18,37 @@ const Bookings = () => {
              setBookings(data);
            });
         
-   },[])
-    
+    }, [])
+  
+    console.log(bookings)
     return (
-        <div>
-        {console.log(bookings)}
-            <h1>bookings</h1>
-        </div>
+      <div className="overflow-x-auto w-full">
+        <table className="table w-full">
+          {/* head */}
+          <thead>
+            <tr>
+              <th>
+                <label>
+                  <input type="checkbox" className="checkbox" />
+                </label>
+              </th>
+              <th>Name</th>
+              <th>Service </th>
+              <th>Email</th>
+              <th>Price</th>
+              <th>Date</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            {bookings.map(booking => <BookingsRow
+              key={booking._id}
+              booking={booking}
+            ></BookingsRow>)}
+          </tbody>
+          
+        </table>
+      </div>
     );
 };
 

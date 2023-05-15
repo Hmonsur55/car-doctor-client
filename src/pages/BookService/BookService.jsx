@@ -5,7 +5,7 @@ import { authContext } from "../../components/AuthProvider/AuthProvider";
 const BookService = () => {
   const { user } = useContext(authContext);
   const services = useLoaderData();
-  const { _id, title, price } = services;
+  const { _id, title, price, img } = services;
 
   const handleBook = (event) => {
     event.preventDefault();
@@ -17,6 +17,7 @@ const BookService = () => {
 
     const bookingInformation = {
       name,
+      img,
       email,
       date,
       due,
@@ -24,9 +25,9 @@ const BookService = () => {
       services_title: title,
       price,
     };
-    console.log(bookingInformation);
+    // console.log(bookingInformation);
 
-    fetch(`http://localhost:5000/booking`, {
+    fetch(`http://localhost:5000/bookings`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

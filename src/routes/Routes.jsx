@@ -5,6 +5,7 @@ import Main from "../layout/Main";
 import Bookings from "../pages/Bookings/Bookings";
 import BookService from "../pages/BookService/BookService";
 import Home from "../pages/Home/Home/Home";
+import PriveteRoute from "./PriveteRoute";
 
 const router = createBrowserRouter([
   {
@@ -30,8 +31,12 @@ const router = createBrowserRouter([
           fetch(`http://localhost:5000/checkout/${params.id}`),
       },
       {
-        path: '/bookings', 
-        element: <Bookings></Bookings>,
+        path: "/bookings",
+        element: (
+          <PriveteRoute>
+            <Bookings></Bookings>
+          </PriveteRoute>
+        ),
       },
     ],
   },
