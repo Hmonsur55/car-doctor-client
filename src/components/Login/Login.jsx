@@ -1,12 +1,18 @@
 import { signOut } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,  useLocation, useNavigate } from 'react-router-dom';
 import { authContext } from '../AuthProvider/AuthProvider';
 
 const Login = () => {
 const { signIn } = useContext(authContext);
 const [error, setError] = useState("");
-const [success, setSuccess] = useState("");
+  const [success, setSuccess] = useState("");
+  const location = useLocation()
+  const navigate = useNavigate()
+  const from = location.state?.from?.pathname || "/"
+
+  
+
 
 const handleLogin = (event) => {
   event.preventDefault();
@@ -19,6 +25,7 @@ const handleLogin = (event) => {
   signIn(email, password).then(result => {
     const loggedUser = result.user
     console.log(loggedUser)
+    navigate(from, {replace : true})
     form.reset()
     setSuccess('User has been login successfully')
   }).catch(error => {

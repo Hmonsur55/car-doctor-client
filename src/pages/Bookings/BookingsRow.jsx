@@ -1,25 +1,13 @@
-const BookingsRow = ({ booking }) => {
-    const {_id, name, services_title, price, img, date, email } = booking;
-    
-    const handleDelete = id => {
-        const proceed = confirm('are you want to delete')
-        if (proceed) {
-            fetch(`http://localhost:5000/bookings/${id}`, {
-              method: "DELETE",
-            })
-              .then((res) => res.json())
-              .then((data) => {
-                  console.log(data);
-                  if (data.deletedCount > 0) {
-                      alert('user has been delete successfully')
-                  }
-              });
-        }
-    }
+const BookingsRow = ({ booking, handleDelete, confirmBooking }) => {
+  const { _id, name, services_title, price, img, date, email, status } = booking;
+
   return (
     <tr>
       <th>
-        <button onClick={()=>handleDelete(_id)} className="btn btn-circle btn-sm">
+        <button
+          onClick={() => handleDelete(_id)}
+          className="btn btn-circle btn-sm"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
@@ -48,7 +36,10 @@ const BookingsRow = ({ booking }) => {
       <td>{price}</td>
       <td>{date}</td>
       <th>
-        <button className="btn btn-ghost btn-xs">details</button>
+        {status === "confirm" ? <span className="text-green-500">confirm</span> :
+          <button onClick={() => confirmBooking(_id)} className="btn btn-ghost btn-xs">
+          Confirm
+        </button>}
       </th>
     </tr>
   );
